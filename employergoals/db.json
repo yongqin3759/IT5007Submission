@@ -1,0 +1,106 @@
+{
+  "employee": {
+      "id": "1",
+      "email": "fooyongqin@u.nus.edu",
+      "fullName": "Foo Yong Qin",
+      "goals": [
+        {
+          "id": "test",
+          "name": "Finish Bytedance Proj",
+          "steps": [
+            {
+              "assignedPercentage": 50,
+              "completedPercentage": 80,
+              "goalId": "test",
+              "name": "complete React",
+              "percentage": 40
+            },
+            {
+              "assignedPercentage": 10,
+              "completedPercentage": 50,
+              "goalId": "test",
+              "name": "finish node",
+              "percentage": 5
+            },
+            {
+              "assignedPercentage": 30,
+              "completedPercentage": 90,
+              "goalId": "test",
+              "name": "finish UI",
+              "percentage": 27
+            },
+            {
+              "assignedPercentage": 10,
+              "completedPercentage": 100,
+              "goalId": "test",
+              "name": "Do lint",
+              "percentage": 10
+            },
+            {
+              "assignedPercentage": 0,
+              "completedPercentage": 0,
+              "goalId": "test",
+              "name": "testStep",
+              "percentage": 0
+            }
+          ]
+        },
+        {
+          "id": "test2",
+          "employerID": "1",
+          "name": "Code Smore",
+          "steps": [
+            {
+              "assignedPercentage": 10,
+              "completedPercentage": 50,
+              "goalId": "test2",
+              "name": "finish react",
+              "percentage": 5
+            },
+            {
+              "assignedPercentage": 10,
+              "completedPercentage": 50,
+              "goalId": "test2",
+              "name": "finish node",
+              "percentage": 5
+            },
+            {
+              "assignedPercentage": 20,
+              "completedPercentage": 50,
+              "goalId": "test2",
+              "name": "finish UI",
+              "percentage": 10
+            },
+            {
+              "assignedPercentage": 10,
+              "completedPercentage": 100,
+              "goalId": "test2",
+              "name": 4,
+              "percentage": 10
+            },
+            {
+              "assignedPercentage": 50,
+              "completedPercentage": 0,
+              "goalId": "test2",
+              "name": null,
+              "percentage": 0
+            }
+          ]
+        },
+        {
+          "id": "a963d5cc-3d54-4f28-9944-9f56d9c514a6",
+          "employerID": "1",
+          "name": "",
+          "steps": [
+            {
+              "assignedPercentage": 20,
+              "completedPercentage": 50,
+              "goalId": "a963d5cc-3d54-4f28-9944-9f56d9c514a6",
+              "name": "",
+              "percentage": 10
+            }
+          ]
+        }
+      ]
+    }
+}
