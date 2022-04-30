@@ -1,13 +1,11 @@
 const router = require('express').Router();
 const middleware = require('../utils/middleware');
 const Goal = require('../models/Goal');
-const generateError = require('../utils/generateError');
 
 
 router.post('/', middleware.tokenExtractor, async (req, res, next) => {
     try {
         const goal = await Goal.create({ ...req.body, user: req.user._id });
-        // goal._doc.user = req.user;
         res.status(201).json(goal);
     }
     catch (err) {

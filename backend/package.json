@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "dev": "nodemon index.js",
-    "build:ui": "rm -rf build && cd ../employergoals/ && npm run build && cp -r build ../backend"
+    "build:ui": "rm -rf build && cd ../employergoals/ && npm run build && cp -r build ../backend",
+    "deploy": "git push heroku master",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push heroku master && npm run deploy"
   },
   "author": "Yong Qin",
   "license": "MIT",
@@ -15,12 +17,15 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
+    "jest": "^28.0.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.3.1"
+    "mongoose": "^6.3.1",
+    "supertest": "^6.2.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

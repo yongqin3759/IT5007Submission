@@ -3,15 +3,27 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const generateError = require("../utils/generateError");
 
+const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
 exports.createUser = async (req, res, next) => {
     try {
         const { fullName, email, password } = req.body
 
         if (!password || password.length < 3) {
-            const error = new Error('Password length cannot be less than 3!');
-            error.status = 400;
-            throw error;
+            return res.status(400).json({ error: 'Password length cannot be less than 3!'})
         }
+        if(!validateEmail(email)){
+            return res.status(400).json({ error: 'Email not valid!'})
+        }
+        const userExists = await User.findOne({email})
+        if(userExists){
+            return res.status(400).json({ error: 'Email already exists!'})
+        }
+
         const saltRounds = 10
         const passwordHash = await bcrypt.hash(password, saltRounds)
 
