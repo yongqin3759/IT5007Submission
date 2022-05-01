@@ -4,7 +4,8 @@ require('dotenv').config();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const middleware = require('./utils/middleware')
-const loggers = require('./utils/middleware');
+const logger = require('./utils/logger');
+const config = require('./utils/configs')
 
 
 app.use(express.json(), express.urlencoded({ extended: true }), cors());
@@ -15,10 +16,14 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/goals', require('./routes/goals'));
 
 
-app.use(loggers.errorHandler)
-const PORT = process.env.PORT || 3003;
+app.use(middleware.errorHandler)
 
-mongoose.connect(process.env.TEST_MONGODB_URI)
-  .then(() => app.listen(PORT, () => console.log(`Server is running on ${PORT}`)))
+mongoose.connect(config.MONGODB_URI)
+  .then(() => {
+    logger.info('connected to MongoDB')
+  })
+  .catch((error) => {
+    logger.error('error connecting to MongoDB:', error.message)
+  })
 
 module.exports = app

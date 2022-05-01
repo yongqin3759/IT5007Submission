@@ -1,10 +1,9 @@
 import axios from 'axios';
-import baseURL from './baseURL';
 
 
 
 const getAll = (token) => {
-  return axios.get(baseURL + '/api/goals', {
+  return axios.get('/api/goals', {
     headers: {
       'Authorization': 'Bearer ' + token
     }
@@ -13,7 +12,7 @@ const getAll = (token) => {
 };
 
 const create = (newObject, token) => {
-  const request = axios.post(baseURL + '/api/goals', newObject, {
+  const request = axios.post('/api/goals', newObject, {
     headers: {
       'Authorization': 'Bearer ' + token
     }
@@ -22,7 +21,7 @@ const create = (newObject, token) => {
 };
 
 const update = (id, newObject, token) => {
-  return axios.put(baseURL + '/api/goals/' + id, newObject, {
+  return axios.put('/api/goals/' + id, newObject, {
     headers: {
       'Authorization': 'Bearer ' + token
     }
@@ -31,7 +30,7 @@ const update = (id, newObject, token) => {
 };
 
 const remove = (id, token) => {
-  return axios.delete(baseURL + '/api/goals/' + id, {
+  return axios.delete('/api/goals/' + id, {
     headers: {
       'Authorization': 'Bearer ' + token
     }

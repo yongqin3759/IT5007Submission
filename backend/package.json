@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "dev": "nodemon index.js",
     "build:ui": "rm -rf build && cd ../employergoals/ && npm run build && cp -r build ../backend",

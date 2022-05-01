@@ -57,18 +57,43 @@ initialGoals = [
     }
 ]
 
-const nonExistingId = async() => {
-  const note = new Goal({content:'willremovethissoon', date: new Date()})
-  await goal.save()
-  await goal.remove()
 
-  return goal._id.toString()
-}
-
-const usersInDb = async() => {
+const usersInDb = async () => {
   const users = await User.find({})
   return users.map(user => user.toJSON())
 }
+
+const newGoal = {
+  name: 'New Goal',
+  steps: [
+    {
+      assignedPercentage: 20,
+      completedPercentage: 50,
+      name: '',
+      percentage: 10,
+    },
+  ],
+}
+
+const nonExistingId = async () => {
+  const goal = new Goal({
+    name: 'New Goal',
+    steps: [
+      {
+        assignedPercentage: 20,
+        completedPercentage: 50,
+        name: '',
+        percentage: 10,
+      },
+    ],
+  })
+  await goal.save()
+  await goal.remove()
+
+  console.log(goal._id.toString())
+  return goal._id.toString()
+}
+
 
 const goalsInDb = async() => {
   const goals = await Goal.find({})
@@ -76,5 +101,5 @@ const goalsInDb = async() => {
 }
 
 module.exports = {
-  initialGoals, nonExistingId, goalsInDb, usersInDb
+  initialGoals, nonExistingId, goalsInDb, usersInDb, newGoal
 }

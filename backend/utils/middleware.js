@@ -15,7 +15,7 @@ const tokenExtractor = async (request, response, next) => {
     const authorization = request.get('Authorization');
     if (!authorization) {
       const error = new Error('User is not authenticated!');
-      error.status = 403;
+      error.status = 401;
       throw error
     }
     const token = authorization.split(' ')[1];
@@ -44,19 +44,7 @@ const unknownEndpoint = (request, response) => {
 }
 
 const errorHandler = (error, request, response, next) => {
-  console.log(error);
   logger.error(error.message)
-
-  // if (error.name === 'CastError') {
-  //   return response.status(400).send({ error: 'malformatted id' })
-  // } else if (error.name === 'ValidationError') {
-  //   return response.status(400).json({ error: error.message })
-  // } else if (error.name === 'JsonWebTokenError') {
-  //   return response.status(401).json({
-  //     error: 'invalid token'
-  //   })
-  // }
-
   if (error.name === 'MongoServerError' && error.code === 11000) error.status = 422;
   response.status(+error.status || +error.statusCode || +error.code || 500).send(error);
   next(error)

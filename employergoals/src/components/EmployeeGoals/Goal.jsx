@@ -13,6 +13,7 @@ const Goal = ({ myGoal, auth , handleDeleteGoal}) => {
   const [showResults, setShowResults] = useState(false);
   const [goal,setGoal] = useState(myGoal)
   const [steps, setSteps] = useState([...goal.steps])
+
   let errorMsg = null;
   let style = {
     fontSize: 'large',
@@ -39,7 +40,8 @@ const Goal = ({ myGoal, auth , handleDeleteGoal}) => {
 
   const totalAssignedPercentage = steps.reduce((prev, current) => (
     prev + (current.assignedPercentage)), 0);
-
+  
+  
   if (goalCompletionRate > 100) {
     progressBarColor = 'danger';
   } else if (goalCompletionRate >= 70) {
@@ -158,7 +160,7 @@ const Goal = ({ myGoal, auth , handleDeleteGoal}) => {
         Total Assigned Percentage: {totalAssignedPercentage} %
         {totalAssignedPercentage === 100 ? <FcApproval /> : null}
       </h6>
-      <Button variant="success" size="lg" onClick={handleSaveChanges}>Save Changes </Button>
+      <Button variant="success" size="lg" onClick={handleSaveChanges} disabled={totalAssignedPercentage>100}>Save Changes </Button>
       <Button variant="warning" size="lg" onClick={()=>handleDeleteGoal(goal._id)}>Delete Goal </Button>
       <Error msg={errorMsg} />
       
